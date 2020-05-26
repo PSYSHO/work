@@ -9,5 +9,5 @@ import org.springframework.stereotype.Service;
 @Repository
 public interface UserRepo extends JpaRepository<User,Long> {
     User findByUsername(String username);
-
+    User findByActivationCode(String code);
 }

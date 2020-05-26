@@ -17,6 +17,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.3.0.RELEASE'
     implementation 'org.springframework.security:spring-security-test'
     implementation"org.springframework.boot:spring-boot-starter-thymeleaf"
     implementation'org.springframework.boot:spring-boot-starter-web'

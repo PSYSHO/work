@@ -8,6 +8,9 @@
 </head>
 <body class="container-fluid bg-secondary">
 <div align="center">
+    <div class="alert alert-info" th:if="${message}">
+        <h3 th:text="${message}"></h3>
+    </div>
 <div th:if="${param.error}"class="alert alert-warning" role="alert">
     Invalid username and password.
 </div>
