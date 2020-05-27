@@ -14,11 +14,10 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/customers")
+@RequestMapping("customers")
 public class CustomerController {
     @Autowired
     private CustomerRepo customerRepository;
-
 
     @GetMapping
     public Iterable<Customer> getAll() {
