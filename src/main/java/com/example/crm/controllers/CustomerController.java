@@ -2,7 +2,6 @@ package com.example.crm.controllers;
 
 import com.example.crm.entities.Customer;
 import com.example.crm.repositories.CustomerRepo;
-import com.example.crm.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.ui.Model;
@@ -23,22 +22,18 @@ public class CustomerController {
     public Iterable<Customer> getAll() {
         return customerRepository.findAll(Sort.by("firstName").ascending());
     }
-    @GetMapping("/{Id}")
+    @GetMapping("{Id}")
     public Optional<Customer> getById(@PathVariable("Id") Long id){
         return customerRepository.findById(id);
     }
-    /*@GetMapping("/{firstName}")
-    public Customer getByFirstName(@PathVariable("firstName") String  firstName){
-        return customerRepository.findByFirstName(firstName);
-    }*/
 
     @PostMapping
     public Customer createCustomer(@RequestBody Customer Customer){
         return customerRepository.save(Customer);
     }
 
-    @PutMapping("/{Id}")
-    public void updateCustomer(@PathVariable("Id") Long id, @RequestBody Customer customer){
+    @PutMapping("/{id}")
+    public void updateCustomer(@PathVariable("id") Long id, @RequestBody Customer customer){
         customerRepository.findById(id).map(customer1 -> {
            customer1.setAddress(customer.getAddress());
            customer1.setCity(customer.getCity());

@@ -33,7 +33,18 @@ public class UserService implements UserDetailsService {
         User newUser = new User();
         newUser.setUsername(user.getUsername());
         newUser.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        newUser.setRoles(Collections.singleton(Role.USER));
+        newUser.setRole(Role.USER);
+        newUser.setEmail(user.getEmail());
+        newUser.setActive(user.isActive());
+        newUser.setActivationCode(user.getActivationCode());
+        userRepo.save(newUser);
+        return newUser;
+    }
+    public User saves(User user){
+        User newUser = new User();
+        newUser.setUsername(user.getUsername());
+        newUser.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        newUser.setRole(user.getRole());
         newUser.setEmail(user.getEmail());
         newUser.setActive(user.isActive());
         newUser.setActivationCode(user.getActivationCode());
@@ -50,7 +61,7 @@ public class UserService implements UserDetailsService {
         }
 
         user.setActive(true);
-        user.setRoles(Collections.singleton(Role.USER));
+        user.setRole(Role.USER);
         user.setActivationCode(UUID.randomUUID().toString());
         userService.save(user);
 
